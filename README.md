@@ -90,6 +90,7 @@ monitor.stop();
 ```
 
 ## Updates
+- `v1.0.1 :` Removes an old reference to an unused module.
 - `v1.0.0 :` Initial release
 
 ## License

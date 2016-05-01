@@ -1,7 +1,7 @@
 /*
 Name    : url-keeper.js
 Author  : Julien Blanc
-Version : 1.0.0
+Version : 1.0.1
 Date    : 02/05/2016
 NodeJS  : 5.10.1+ 
 */
@@ -11,7 +11,6 @@ var evt = require('event-timer');
 var urm = require('url-monitor');
 var utl = require('util');
 var event = require('events').EventEmitter;
-var crypt = require('crypto');
 var _ = require('private-parts').createKey();
 
 
