@@ -1,0 +1,32 @@
+{
+  "name": "url-keeper",
+  "version": "1.0.0",
+  "description": "Dynamically maintains a list of URLs based on their availability in a given time interval. You can also add or remove a URL on the fly. Uses url-monitor and event-timer.",
+  "main": "url-keeper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j8la/url-keeper.git"
+  },
+  "keywords": [
+    "url",
+    "keeper",
+    "monitor",
+    "event",
+    "http",
+    "watcher"
+  ],
+  "author": "Julien Blanc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/j8la/url-keeper/issues"
+  },
+  "homepage": "https://github.com/j8la/url-keeper#readme",
+  "dependencies": {
+    "event-timer": "^1.1.1",
+    "private-parts": "^0.4.1",
+    "url-monitor": "^1.2.0"
+  }
+}
