@@ -1,7 +1,7 @@
 /*
 Name    : url-keeper.js
 Author  : Julien Blanc
-Version : 1.2.0
+Version : 1.2.1
 Date    : 02/05/2016
 NodeJS  : 5.10.1+ 
 */

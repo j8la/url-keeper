@@ -109,6 +109,7 @@ monitor.stop();
 ```
 
 ## Updates
+- `v1.2.1 :` Updating dependencies
 - `v1.2.0 :` Add 'getAvailableURLs()' method and 'eventTimer' option
 - `v1.0.1 :` Removes an old reference to an unused module
 - `v1.0.0 :` Initial release
