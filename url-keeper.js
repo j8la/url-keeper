@@ -1,7 +1,7 @@
 /*
 Name    : url-keeper.js
 Author  : Julien Blanc
-Version : 1.0.1
+Version : 1.2.0
 Date    : 02/05/2016
 NodeJS  : 5.10.1+ 
 */
@@ -21,6 +21,7 @@ function urlk(options) {
     
     _(this).interval = options.interval || 5000;
     _(this).timeout = options.timeout || 3000;
+    _(this).eventTimer = options.eventTimer || 'true';
     _(this).handle = null;
     _(this).running = false;
     
@@ -35,10 +36,12 @@ function urlk(options) {
         };
     }
     
-    _(this).check = new evt({
-        interval: _(this).interval || 5000,
-        events: ['event']
-    })
+    if(_(this).eventTimer == 'true') {
+        _(this).check = new evt({
+            interval: _(this).interval || 5000,
+            events: ['event']
+        })
+    }
         
 }
 
@@ -92,17 +95,25 @@ urlk.prototype.start = function() {
         
     }
     
-    _(this).check.on('event', () => {
+    if(_(this).eventTimer == 'true') {
         
-        if( _(this).running == false) {
-             _(this).running = true;
-        } else {
-            this.emit('change', _(this).list);
-        }
+        _(this).check.on('event', () => {
             
-    })
-    
-    _(this).check.start();
+            if( _(this).running == false) {
+                _(this).running = true;
+            } else {
+                this.emit('change', _(this).list);
+            }
+                
+        })
+        
+        _(this).check.start();
+        
+    } else {
+        
+        _(this).running = true;
+        
+    }
     
 }
 
@@ -115,8 +126,11 @@ urlk.prototype.stop = function() {
         delete _(this).urlmon[url];
     }
     
-    _(this).check.stop();
-    _(this).check.removeAllListeners('event');
+    if(_(this).eventTimer == 'true') {
+        _(this).check.stop();
+        _(this).check.removeAllListeners('event');
+    }
+    
     _(this).running = false;
     
 }
@@ -157,6 +171,21 @@ urlk.prototype.getURLs = function() {
     var out = [];
     
     for(url in _(this).list) { out.push(url); }
+    
+    return out;
+    
+}
+
+//------ Returns array of hosts available in the same format that options
+urlk.prototype.getAvailableURLs = function() {
+    
+    var out = [];
+    
+    for(url in _(this).list) { 
+        if(_(this).list[url].status == 'available') {
+            out.push(url); 
+        }
+    }
     
     return out;
     

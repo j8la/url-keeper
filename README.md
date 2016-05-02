@@ -28,6 +28,9 @@ monitor.on('change', (data) => {
     console.dir(data,{colors: true}); 
 })
 
+// Add an url
+monitor.add('http://www.npmjs.com');
+
 // Start url-keeper
 monitor.start();
 ```
@@ -65,12 +68,28 @@ The results given by the 'change' event will be :
 
 If you want to manage the refresh of the list by yourself without the 'change' event, you can access the list with this method (but the interval option is always necessary for URL checking) :
 ```javascript
+// create url-keeper instance
+var monitor = new urlkeeper({
+    eventTimer: 'false',               // 'true' by default, optional
+    list:['http://www.google.fr',      // Mandatory
+          'http://www.microsoft.com',
+          'http://www.apple.com',
+          'https://www.debian.org']
+});
+
+monitor.start();
+
 monitor.getList();
 ```
 
 You can get an array of the URLs (for an example, to get the updated list passed at origin in the options before stopping the instance) :
 ```javascript
 monitor.getURLs();
+```
+
+Or an array of the available URLs :
+```javascript
+monitor.getAvailableURLs();
 ```
 
 You can add or delete an url to the list on the fly :
@@ -90,7 +109,8 @@ monitor.stop();
 ```
 
 ## Updates
-- `v1.0.1 :` Removes an old reference to an unused module.
+- `v1.2.O :` Add 'getAvailableURLs()' method and 'eventTimer' option
+- `v1.0.1 :` Removes an old reference to an unused module
 - `v1.0.0 :` Initial release
 
 ## License
